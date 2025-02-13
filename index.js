@@ -6,7 +6,7 @@ const postRouter = require('./routes/postRoute');
 const {paiduserRouter}=require("./routes/paiduserRoutes")
 require("dotenv").config()
 const {auth} = require('./middleware/auth');
-const {client}=require("./connection/redis");
+// const {client}=require("./connection/redis");
 
 const app = express()
 
@@ -23,10 +23,10 @@ app.listen(process.env.Port, async () => {
     try {
         await connection
         console.log("Connected to Database succesfully");
-        await client.connect();
-        console.log("connected to redis");
+        // await client.connect();
+        // console.log("connected to redis");
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         console.log("Some error while connicting to DB");
     }
     console.log(`server is connected to port no ${process.env.Port}`);
