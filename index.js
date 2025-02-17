@@ -13,8 +13,8 @@ app.use(express.json());
 app.use(cors());
 
 const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY,
-  key_secret: process.env.RAZORPAY_SECRET,
+  key_id: process.env.RAZOR_KEY,
+  key_secret: process.env.RAZOR_SECRET,
 });
 
 // Create Order API
