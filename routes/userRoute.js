@@ -194,35 +194,4 @@ userRouter.get("/findgoogle", async (req, res) => {
   }
 });
 
-userRouter.post("/create-order", async (req, res) => {
-  const { amount } = req.body;
-  if (!amount) {
-    return res.status(404).send("Amount not found");
-  }
-  const url = "https://api.razorpay.com/v1/orders";
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Basic ${process.env.RAZOR_KEY}:${process.env.RAZOR_SECRET}`,
-  };
-  const plandata = {
-    amount: amount * 100,
-    currency: "INR",
-    receipt: `Receipt for amount ${amount}`,
-    notes: {
-      notes_key_1: "payment",
-    },
-  };
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(plandata),
-    });
-    const data = await response.json();
-    res.json(data);
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-});
-
 module.exports = userRouter;
